@@ -54,6 +54,8 @@ const App = () => {
         loading ? <Loading /> :
         <Router>
             <Routes>
+                <Route path="/" element={<Home /> } />
+                <Route path="/admin/login" element={<Login /> } />
                 <Route path="/admin" element={<AdminRoute />} >
                     <Route path="/admin" element={<Admin />}>
                         <Route index element={<Token />} />
@@ -61,7 +63,6 @@ const App = () => {
                         <Route path="token" element={<Token />} />
                     </Route>
                 </Route>
-                <Route path="/admin/login" element={<Login /> } />
                 {/* <AdminRoute exact path="/addproduct" component={AddProduct} />
                 <AdminRoute exact path="/addtopping" component={AddTopping} />
                 <AdminRoute exact path="/transaction" component={Transaction} />
