@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const env = process.env.NODE_ENV
-export const baseURL = (env === 'production') ? 'https://api.digichain.finance' : 'http://localhost:5000/api/v1';
+// const env = process.env.NODE_ENV
+// export const baseURL = (env === 'production') ? 'https://api.digichain.finance' : 'http://localhost:5000/api/v1';
+export const baseURL = 'https://api.digichain.finance'
 export const uploadURL = baseURL + '/';
 
 export const API = axios.create({ baseURL });

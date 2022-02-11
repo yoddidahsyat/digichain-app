@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../components/Loading';
 import { API } from '../../../config/api';
+import Swal from 'sweetalert2'
+
+
 const Token = () => {
 
     // fetch token
@@ -13,7 +16,13 @@ const Token = () => {
             setTokens(response.data.data.tokens);
             setLoading(false);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Server Error',
+                text: err.message
+            })
+            setLoading(false)
         }
     }
 
@@ -23,19 +32,19 @@ const Token = () => {
     
 
     const handleAdd = () => {
-        console.log('add token')
+        alert('Add token')
         // $('#tokenModal').modal('show')
         // $('#tokenLabel').text('Edit Token')
     }
 
     const handleEdit = id => {
-        console.log(id)
+        alert(`Edit Token: ${id}`)
         // $('#tokenModal').modal('show')
         // $('#tokenLabel').text('Edit Token')
     }
     
     const handleDelete = id => {
-        console.log(id);
+        alert(`Delete Token ${id}`);
     }
     
     return (
@@ -66,7 +75,7 @@ const Token = () => {
                                     <h3 className="card-title">Token List</h3>
                                 </div>
                                 <div className="card-body">
-                                    {/* <button className='btn btn-primary mb-3' onClick={() => handleAdd()}>Add Token</button> */}
+                                    <button className='btn btn-primary mb-3' onClick={() => handleAdd()}>Add Token</button>
                                     <table id="tableToken" className="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -80,7 +89,7 @@ const Token = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {tokens.map(token => 
+                                            { !tokens ? <tr><td colSpan={7}>No Data Available</td></tr> : tokens.map(token => 
                                                 <tr key={token.id}>
                                                     <td>{token.address}</td>
                                                     <td>{token.type}</td>
